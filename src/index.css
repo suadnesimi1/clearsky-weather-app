@@ -1,13 +1,24 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* Backgrounds */
+.sunny-bg { background: linear-gradient(to top, #fceabb, #f8b500); }
+.cloudy-bg { background: url('https://i.ibb.co/3m8xH1v/clouds.png') repeat-x; animation: moveClouds 60s linear infinite; }
+.rainy-bg { background: linear-gradient(to top, #4e54c8, #8f94fb); }
+.snowy-bg { background: linear-gradient(to top, #e0f7fa, #80deea); }
+.night-bg { background: linear-gradient(to top, #0f2027, #203a43, #2c5364); }
+.cloudy-night-bg { background: url('https://i.ibb.co/3m8xH1v/clouds.png') repeat-x; filter: brightness(0.5); animation: moveClouds 60s linear infinite; }
+.rainy-night-bg { background: linear-gradient(to top, #1e3c72, #2a5298); }
+.snowy-night-bg { background: linear-gradient(to top, #1c1c2a, #2e2e3d); }
+
+/* Animations */
+@keyframes moveClouds { 0% { background-position: 0 0; } 100% { background-position: 1000px 0; } }
+@keyframes fall { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
+@keyframes snowFall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+@keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+
+.raindrop { position: absolute; width: 2px; background: rgba(255,255,255,0.6); top: -10px; animation: fall 1s linear infinite; }
+.snowflake { position: absolute; background: white; border-radius: 50%; top: -10px; animation: snowFall 5s linear infinite; }
